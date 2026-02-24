@@ -10,6 +10,8 @@ services:
       - SANDBOX_ENV_HTTP_PROXY=${HTTP_PROXY:-}
       - SANDBOX_ENV_HTTPS_PROXY=${HTTPS_PROXY:-}
       - SANDBOX_ENV_NO_PROXY=${NO_PROXY:-}
+      - SANDBOX_ENV_JULES_TOKEN=${JULES_TOKEN}
+      - SANDBOX_ENV_GOOGLE_APPLICATION_CREDENTIALS=/opt/openhands/workspace/gcp-key.json
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./:/opt/openhands/workspace
