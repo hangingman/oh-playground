@@ -1,0 +1,15 @@
+services:
+  openhands:
+    image: docker.openhands.dev/openhands/openhands:1.4
+    container_name: openhands
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.openhands.dev/openhands/runtime:1.4
+      - SANDBOX_ENV_HTTP_PROXY=${HTTP_PROXY:-}
+      - SANDBOX_ENV_HTTPS_PROXY=${HTTPS_PROXY:-}
+      - SANDBOX_ENV_NO_PROXY=${NO_PROXY:-}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/opt/openhands/workspace

@@ -1,0 +1,3 @@
+[core]
+workspace_base = "/opt/openhands/workspace"
+sandbox_runtime_container_image = "docker.openhands.dev/openhands/runtime:1.4"
