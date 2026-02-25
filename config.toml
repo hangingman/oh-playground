@@ -1,4 +1,7 @@
 [core]
 workspace_base = "/opt/openhands/workspace"
 sandbox_runtime_container_image = "docker.openhands.dev/openhands/runtime:1.4"
-runtime_extra_deps = "npm install -g @google/jules-cli"
+runtime_extra_deps = """
+stagehand-py rich
+npm install -g @google/jules-cli
+"""
