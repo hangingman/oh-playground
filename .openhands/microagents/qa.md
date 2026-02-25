@@ -22,11 +22,15 @@
 - `stagehand-py` を使用して Browserbase 上でブラウザを操作する。
 - 例:
   ```python
+  import os
   from stagehand import Stagehand
 
   async def test_feature():
+      # テスト対象のURLを環境変数から取得（デフォルトは http://localhost:3000）
+      app_url = os.getenv("APP_URL", "http://localhost:3000")
+
       async with Stagehand() as page:
-          await page.goto("http://localhost:3000") # または対象のURL
+          await page.goto(app_url)
           await page.act("ログインボタンをクリックして、テストユーザーでログインする")
           # ... 検証ロジック
   ```
