@@ -2,7 +2,8 @@
 
 ## 開発環境
 - **OS**: Docker (OpenHands Runtime)
-- **Engine**: OpenHands v1.4
+- **Engine**: OpenHands v1.4.0 (Latest Stable as of 2026-02-28)
+- **URL**: http://localhost:3000
 
 ## 使用技術
 - **言語**: Python 3.10+ (推奨)

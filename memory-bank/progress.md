@@ -1,6 +1,7 @@
 # 進捗状況 (Progress)
 
 ## 完了した作業
+- [x] OpenHands 環境の立ち上げとミドルウェアの最新化 (2026-02-28)
 - [x] README.md の作成
 - [x] .clinerules の作成
 - [x] memory-bank ディレクトリの作成
