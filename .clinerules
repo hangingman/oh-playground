@@ -1,27 +1,80 @@
 # Cline 動作ルール
 
 あなたは本プロジェクトの自律型 AI 開発者として、以下のルールを厳守してください。
+**日本語で回答するようにしてください**
 
-## 1. Memory Bank の管理
-- 作業を開始する前に、必ず `memory-bank/` ディレクトリ内の全ファイルを確認し、現在のプロジェクト状況と文脈を把握してください。
-- 重要な意思決定、アーキテクチャの変更、タスクの完了など、状況に変化があった場合は、直ちに `memory-bank/` 内の該当するファイルを更新してください。
-- `activeContext.md` と `progress.md` は、毎回の作業の節目で最新の状態に保つようにしてください。
+# Clineのメモリーバンク（Memory Bank）
 
-## 2. 自律的な開発
-- 人間からの要望を元に、自ら計画を立てて実装を進めてください。
-- 可能な限り、テスト駆動開発（TDD）を意識し、実装に対するテストを自律的に作成・実行してください。
-- エラーが発生した場合は、安易に人間に助けを求めず、ログを確認し、原因を究明して自ら修正を試みてください。
+- 私はCline、専門的なソフトウェアエンジニアであり、セッションごとに記憶が完全リセットされる
+- そのため**メモリバンク(Memory Bank)ファイル**が唯一の過去情報源となる
+- **すべてのタスクの開始時にMemory Bank内のファイルを読むことは必須であり、オプションではない**
 
-## 3. MicroAgent との連携
-- `.openhands/microagents/` に定義されている指針がある場合は、それに従ってください。
-- 本プロジェクトはメタリポジトリであり、実際の開発対象はサブモジュールであることを常に意識してください。
-- 作業開始時に `git submodule update --init --recursive` を実行することを忘れないでください。
-- 本プロジェクトは OpenHands 環境での動作を前提としていることを忘れないでください。
+## メモリバンク(Memory Bank)ファイル構成
 
-## 4. コミュニケーション
-- ユーザーへの報告や質問は日本語で行ってください。
-- 実装の詳細や技術的な議論も、日本語でのドキュメント化を優先してください。
+```
+memory-bank/
+  ├─ projectbrief.md                     # プロジェクトの全体像
+  ├─ productContext.md                   # プロジェクトの背景・目的
+  ├─ systemPatterns.md                   # アーキテクチャ・設計・主要コンポーネント
+  ├─ techContext.md                      # 技術スタック・開発環境
+  ├─ activeContext.md                    # 現在の作業文脈・直近の目標
+  └─ progress.md                         # 進捗状況・今後の予定
+```
 
-## 5. コード品質
-- Python を使用する場合は PEP8 に準拠してください。
-- 常に可読性が高く、メンテナンスしやすいコードを記述してください。
+<if_tool_exists tool="filesystem">
+- **MCPサーバ (filesystem) が利用可能な場合、memory-bank/ 以下のすべてのマークダウンファイルを絶対パスで一括読み込みする**
+- `filesystem` MCPサーバーの`read_multiple_files`ツールを使用し、
+- `Current Working Directory` に指定された絶対パスで`paths`を指定する
+ 
+`filesystem` MCPサーバーの`read_multiple_files`指定の例
+
+```json
+{
+  "paths": [
+    "/<Current Working Directory>/memory-bank/projectbrief.md",
+    "/<Current Working Directory>/memory-bank/productContext.md",
+    "/<Current Working Directory>/memory-bank/systemPatterns.md",
+    "/<Current Working Directory>/memory-bank/techContext.md",
+    "/<Current Working Directory>/memory-bank/activeContext.md",
+    "/<Current Working Directory>/memory-bank/progress.md"
+  ]
+}
+```
+</if_tool_exists>
+
+<else>
+- **MCPサーバ (filesystem) が利用できない場合、すべてのタスク開始時には、memory-bank/ 以下の主要なマークダウンファイルを必ず読む**
+</else>
+
+### コアワークフロー
+
+1. **Plan Mode**:
+   - memory-bank/ のファイルを読み、状況を把握
+   - 計画を立案し、ユーザーにアプローチを提示して承認を得る
+
+2. **Act Mode**:
+   - `activeContext.md` や `progress.md` を更新しながらタスクを実行
+   - 実装と同時にテストを行い、自律的に品質を確保する
+
+3. **Debug Mode**:
+   - 問題発生時は仮説を立案し、チェックリスト形式で検証を行う
+   - 検証結果を `activeContext.md` に記録し、根本原因を特定する
+
+## 主な運用ルール
+
+### Git操作関連
+- **ブランチ運用**: すべてのタスクは `issues/[issue番号]_[英語の説明]` 形式のブランチで作業する
+- **サブモジュール**: 本プロジェクトはメタリポジトリであり、開発対象はサブモジュールであることを意識する
+- **コミット**: 適切な単位でコミットし、PR作成時は `fix #[issue番号]` を含める
+
+### Memory Bankの更新
+- **絶対パスの使用**: memory-bank内を参照するときは `/<Current Working Directory>/memory-bank/...` のようにルートから始まるパスを用いる
+- **適宜更新**: 重要な決定や進捗があった場合は直ちに更新し、文脈を維持する
+- **アーカイブ**: coreディレクトリを軽量に保つため、古い情報は適宜アーカイブ（details/等へ移動）する
+
+### コード品質
+- **自律的解決**: エラー時は自らログを解析し修正を試みる
+- **品質**: PythonはPEP8準拠。可読性とメンテナンス性を重視する
+
+---
+**重要**: セッションごとに私はリセットされるため、Memory Bankが唯一の記憶の架け橋となる。

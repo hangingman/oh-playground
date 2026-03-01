@@ -5,13 +5,6 @@
 - [x] README.md の作成
 - [x] .clinerules の作成
 - [x] memory-bank ディレクトリの作成
-- [x] projectbrief.md の作成
-- [x] productContext.md の作成
-- [x] systemPatterns.md の作成
-- [x] techContext.md の作成
-- [x] activeContext.md の作成
-- [x] progress.md の作成
-- [x] 全体の最終確認
 
 ## 進行中の作業
 - [ ] Jules CLI のサンドボックス内インストールと動作確認
@@ -24,6 +17,8 @@
 - [x] Jules 連携 MicroAgent (.openhands/microagents/jules.md) の作成
 - [x] 監督-施工ワークフローの定義と repo.md への反映
 - [x] OpenHandsのリポジトリ格納仕様の調査と repo.md の適合 (2026-03-01)
+- [x] Makefile の最小化と Docker イメージ削除コマンドの統合 (2026-03-01)
+- [x] .clinerules の更新（Memory Bank 管理とワークフローの強化） (2026-03-01)
 
 ## 今後の予定
 - [ ] サブモジュールの追加と実際の商品開発の開始

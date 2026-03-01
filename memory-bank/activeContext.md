@@ -8,6 +8,8 @@
 - OpenHands と Jules の統合設定（docker-compose.yml, config.toml）。
 - Jules 連携用 MicroAgent の作成。
 - 監督-施工ワークフローのドキュメント化。
+- Makefile の最小化と Docker イメージ削除コマンドの追加（2026-03-01）。
+- .clinerules の更新とワークフロー、Memory Bank 管理ルールの強化（2026-03-01）。
 
 ## 次のステップ
 - Jules CLI の動作確認（サンドボックス内でのインストールテスト）。
