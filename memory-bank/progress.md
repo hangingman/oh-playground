@@ -23,6 +23,7 @@
 - [x] config.toml への jules-cli 依存関係追加
 - [x] Jules 連携 MicroAgent (.openhands/microagents/jules.md) の作成
 - [x] 監督-施工ワークフローの定義と repo.md への反映
+- [x] OpenHandsのリポジトリ格納仕様の調査と repo.md の適合 (2026-03-01)
 
 ## 今後の予定
 - [ ] サブモジュールの追加と実際の商品開発の開始
